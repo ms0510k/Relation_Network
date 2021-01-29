@@ -1,19 +1,50 @@
-# Relation_Network
-Implementation of Relation Network. Original paper: https://arxiv.org/abs/1706.01427
+# Relation Network
+This is an implementation of Neuro-Symbolic Unification Model.  
+If you have any questions or comments, please fell free to contact us by email [rjs951001@gmail.com].
 
-Implementation of Recurrent Relational Network. Original paper: https://arxiv.org/abs/1711.08028
+## Data Format
 
-This repository uses PyTorch v1.3 (Python3.7).
+Data for this model is in `nl` format - basically Prolog syntax:
 
-# Story Generate
-This implementation tests the Relation Network model (RN) and the Recurrent Relational Network model (RRN) against the babi dataset, available at https://research.fb.com/downloads/babi/
+```shell
+shell$ head data/nations/nations.nl
+exports3(netherlands,uk).
+economicaid(usa,israel).
+booktranslations(egypt,usa).
+officialvisits(israel,uk).
+relexports(brazil,uk).
+relbooktranslations(india,uk).
+conferences(uk,india).
+independence(uk,cuba).
+reltreaties(egypt,china).
+negativebehavior(china,uk).
+ngo(usa,poland).
+```
 
-# PRA
-This repository uses Weights and Biases (W&B) to monitor experiments. You can create a free account on W&B (https://www.wandb.com/) or comment out the (few) lines starting with `wandb`. Without W&B, accuracy and loss plots will still be created and saved locally in the `results` folder.
+- `*.nl` files represent *facts and rules* (example of a rule: `isa(X,Y) :- isa(X,Z), isa(Z,Y)`)
 
-# Train and Test RN
-* Run `pip install -r requirements.txt`
-* Create a folder `babi`
-* Download the babi dataset (20 tasks) already divided and preprocessed in train, validation and test at this link: https://drive.google.com/drive/folders/1HkO_w7hbxxWZV4nbGl0Y2w_AuSa4ktub?usp=sharing and put the downloaded folder inside `babi`.
-* Download the word dictionaries at: https://drive.google.com/drive/folders/1Ktd4kL1FJBiY_R_HoqlicjmRemkq8xzC?usp=sharing and put the downloaded folder inside `babi`.
-* Create a folder `results` to store experiment results (both plots and saved models)
+- `*.nlt` files represent *rule templates* (example of a rule template: `#1(X,Y) :- #2(X,Z), #3(Z,Y)`)
+
+```shell
+shell$ cat data/nations/nations.nlt
+20   #1(X, Y) :- #2(X, Y).
+
+20   #1(X, Y) :- #2(Y, X).
+
+20   #1(X, Y) :-
+     #2(X, Z),
+     #2(Z, Y).
+```
+
+## Running
+
+The main file for running NTP is `neural-symbolic_model.ipynb` which takes the path to a dataset file as argument.
+
+## The institute to construct dataset
+* __The AI Lab in Soongsil University__
+
+## Citation
+```
+
+```
+
