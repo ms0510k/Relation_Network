@@ -1,6 +1,5 @@
-# Relation Network
-This is an implementation of Neuro-Symbolic Unification Model.  
-If you have any questions or comments, please fell free to contact us by email [rjs951001@gmail.com].
+# Relation Network 
+If you have any questions or comments, please fell free to contact us by email [leewangon@gmail.com].
 
 # Data description
 data/<DATASETS>/
